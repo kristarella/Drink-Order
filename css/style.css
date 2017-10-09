@@ -1,0 +1,71 @@
+body {
+	font-size: 16px;
+	font-family: Open Sans, sans-serif;
+}
+
+/*
+h1, h2, h3, h4, h5, h6 {
+	font-family: "Alfa Slab One", sans-serif;
+}
+*/
+
+header {
+}
+
+li.drink {
+	width: 48%;
+	margin-right: 2%;
+	float: left;
+}
+
+li .order {
+}
+
+.meta {
+	font-size: 0.9em;
+}
+
+.meta li {
+	line-height: 1.7;
+}
+
+.meta li:empty {
+	display: none;
+}
+
+.description {
+	font-style: italic;
+	color: #666;
+}
+
+.brand {
+	text-transform: uppercase;
+	color: #666;
+}
+
+.icon:before {
+	position: relative;
+	top: 1px;
+	display: inline-block;
+	font-family: 'Glyphicons Halflings';
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1;
+	padding-right: 1px;
+
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.black {
+	background-color: black;
+	color: #fff;
+}
+.green {
+	background-color: green;
+	color: #fff;
+}
+.herbal {
+	background-color: purple;
+	color: #fff;
+}

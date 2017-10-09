@@ -1,0 +1,79 @@
+<!doctype html>
+<html ng-app="drinksApp">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Drink Tea</title>
+	<meta name="description" content="Drinks menu">
+
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+	<script src="js/angular.min.js"></script>
+	<script src="js/app.js"></script>
+</head>
+
+<body>
+	<div class="container">
+	<header>
+			<h1>Order a Drink</h1>
+			<p>I recommend the tea!</p>
+	</header>
+
+	<section class="row" ng-controller="drinksCtrl">
+		<div class="col-md-4">
+			<h2>Drink</h2>
+			<p><button 
+				class="btn btn-default {{char.slug}}" 
+				ng-model="drink.categories"
+				ng-click="setTeaFilter(char.id)"
+				ng-repeat="char in chars.categories">{{char.name}}</button> </p>
+		</div>
+		<div class="col-md-4">
+			<h2>Variety</h2>
+			<p><button 
+				class="btn btn-default {{char.slug}}" 
+				ng-model="drink.variety"
+				ng-click="setTeaFilter(char.id)"
+				ng-repeat="char in chars.variety">{{char.name}}</button> </p>
+		</div>
+		<div class="col-md-4">
+			<h2>Characteristics</h2>
+			<p><button class="btn btn-default {{char.slug}}" 
+				ng-model="drink.tags" 
+				ng-click="setTeaFilter(char.id)" 
+				ng-repeat="char in chars.tags">{{char.name}}</button> </p>
+		</div>
+		<div class="col-md-12">
+			<h2>Choose your beverage</h2>
+			<ul ng-model="drinks">
+				<li ng-repeat="drink in drinks | filter:teaFilter:true" class="drink">{{drink.title.rendered}} <button class="btn btn-xs btn-primary order" ng-click="showInfo = !showInfo"><span class="icon glyphicon-question-sign"></span></button> <button class="btn btn-xs btn-primary order" ng-click="addItem(drink.title.rendered)"><span class="icon glyphicon-plus"></span> Order</button> 
+					<ul class="meta" ng-show="showInfo">
+						<li class="description">{{drink.content.rendered}}</li>
+						<li class="brand">{{drink.brand[0]}}</li> 
+						<li class="variety"><span class="label {{drink.variety}}">{{drink.variety[0]}}</span></li>  
+						<li class="type icon glyphicon-{{drink.format[0]}}">{{drink.format[0]}}</li> 
+						<!--<li class="tags">
+							<span ng-repeat="tag in drink.tags">{{tag}}, </span>
+						</li>-->
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<div class="col-md-12">
+			<h2>Place Your Order</h2>
+			<form id="order" ng-submit="orderDrinks()">
+				<p><label>Name: <input type="text" name="name" required ng-model="orderName" /></label></p>
+				<ul class="drinkOrders">
+					<li ng-repeat="item in items">{{item}} <input type="hidden" name="drinks[{{item}}]" ng-model="addedDrinks" /> <button type="button" class="btn btn-xs btn-danger" ng-click="removeItem(item)" ><span class="icon glyphicon-minus"></span> Remove</button></li>
+				</ul>
+				<p><input type="submit" value="Order" /></p>
+			</form>
+		</div>
+
+		<!-- {{chars}} -->
+	</section>
+
+</div>
+
+</body>
+</html>
